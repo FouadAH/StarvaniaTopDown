@@ -12,4 +12,5 @@ public class PlayerDataSO : ScriptableObject
     public float mana;
 
     public float manaRegenRate;
+    public float attackCooldown;
 }

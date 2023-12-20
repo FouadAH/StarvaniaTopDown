@@ -36,4 +36,10 @@ public class PlayerController : MonoBehaviour
     {
         TakeDamage(10f);
     }
+
+    [ContextMenu("Consume Player Mana")]
+    public void TestComsumeMana()
+    {
+        ComsumeMana(10f);
+    }
 }

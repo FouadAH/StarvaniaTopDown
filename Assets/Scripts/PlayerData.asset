@@ -15,5 +15,6 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   maxMana: 100
-  mana: 86.690414
+  mana: 100
   manaRegenRate: 5
+  attackCooldown: 0.35
