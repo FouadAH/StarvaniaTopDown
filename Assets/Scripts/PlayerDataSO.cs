@@ -9,5 +9,7 @@ public class PlayerDataSO : ScriptableObject
     public float health;
 
     public float maxMana;
-    public float mana; 
+    public float mana;
+
+    public float manaRegenRate;
 }

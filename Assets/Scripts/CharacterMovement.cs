@@ -11,7 +11,6 @@ public class CharacterMovement : MonoBehaviour
     public float accelarationGrounded = 0.05f;
 
     private Vector3 moveDirection;
-    private Vector3 moveInput;
 
     private float currentVelocityXRef;
     private float currentVelocityX;

@@ -6,7 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerDataSO playerData;
 
-    [ContextMenu("Damage Player")]
+    public void Update()
+    {
+        playerData.mana += playerData.manaRegenRate * Time.deltaTime;
+        playerData.mana = Mathf.Clamp(playerData.mana, 0, playerData.maxMana); 
+    }
+
     public void TakeDamage(float damageAmount)
     {
         playerData.health -= damageAmount;
@@ -24,5 +29,11 @@ public class PlayerController : MonoBehaviour
     public void ComsumeMana(float amount)
     {
         playerData.mana -= amount;
+    }
+
+    [ContextMenu("Damage Player")]
+    public void TestDamage()
+    {
+        TakeDamage(10f);
     }
 }
