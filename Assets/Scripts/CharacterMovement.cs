@@ -7,8 +7,9 @@ public class CharacterMovement : MonoBehaviour
 {
     [Header("Speed Settings")]
     public float moveSpeed = 3f;
-    [Header("Acceleration Settings")]
-    public float accelarationGrounded = 0.05f;
+    public float velocitySmoothTime = 0.05f;
+
+    public Transform orientation;
 
     private Vector3 moveDirection;
 
@@ -27,10 +28,22 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        RotateCharacter();
+        CalculateVelocity();
+    }
+
+    public void RotateCharacter()
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
+        orientation.rotation = Quaternion.Slerp(orientation.rotation, lookRotation, 0.1f);
+    }
+
+    public void CalculateVelocity()
+    {
         Vector3 targetVelocity = moveDirection * moveSpeed;
 
-        currentVelocityX = Mathf.SmoothDamp(currentVelocityX, targetVelocity.x, ref currentVelocityXRef, accelarationGrounded);
-        currentVelocityY = Mathf.SmoothDamp(currentVelocityY, targetVelocity.y, ref currentVelocityYRef, accelarationGrounded);
+        currentVelocityX = Mathf.SmoothDamp(currentVelocityX, targetVelocity.x, ref currentVelocityXRef, velocitySmoothTime);
+        currentVelocityY = Mathf.SmoothDamp(currentVelocityY, targetVelocity.y, ref currentVelocityYRef, velocitySmoothTime);
 
         rb.velocity = new Vector2(currentVelocityX, currentVelocityY);
     }
