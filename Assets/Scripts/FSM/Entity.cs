@@ -5,24 +5,26 @@ using UnityEngine;
 using TMPro;
 using Cinemachine;
 
-public class Entity : MonoBehaviour
+public class Entity : MonoBehaviour, IDamageable
 {
+    public float maxHealth;
     public float aggroRange;
     public LayerMask playerMask;
     public PlayerRuntimeDataSO runtimeData;
 
+    [Header("Debug Text")]
     public TMPro.TMP_Text debugText;
 
     public FiniteStateMachine stateMachine;
 
     public CharacterMovement characterMovement { get; private set; }
 
+    [Header("States")]
     public IdleStateData IdleStateData;
     public PatrolStateData PatrolStateData;
     public PlayerDetectedStateData PlayerDetectedStateData;
 
     public IdleState idleState;
-    public ChaseState chaseState;
     public PatrolState patrolState;
     public PlayerDetectedState playerDetectedState;
 
@@ -33,6 +35,8 @@ public class Entity : MonoBehaviour
 
     public virtual void Start()
     {
+        health = maxHealth;
+
         characterMovement = GetComponent<CharacterMovement>();
         projectileController = GetComponent<ProjectileController>();
 

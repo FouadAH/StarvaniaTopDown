@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     public PlayerDataSO playerData;
     public PlayerRuntimeDataSO runtimeData;
+
+    private void Start()
+    {
+        playerData.health = playerData.maxHealth;
+    }
+
     public void Update()
     {
         playerData.mana += playerData.manaRegenRate * Time.deltaTime;
@@ -31,17 +37,5 @@ public class PlayerController : MonoBehaviour
     public void ComsumeMana(float amount)
     {
         playerData.mana -= amount;
-    }
-
-    [ContextMenu("Damage Player")]
-    public void TestDamage()
-    {
-        TakeDamage(10f);
-    }
-
-    [ContextMenu("Consume Player Mana")]
-    public void TestComsumeMana()
-    {
-        ComsumeMana(10f);
     }
 }

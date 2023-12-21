@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 955c0ad71d62b544c8c49c28c009f0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 10
   projectileSpeed: 8
   damageableMask:
     serializedVersion: 2
