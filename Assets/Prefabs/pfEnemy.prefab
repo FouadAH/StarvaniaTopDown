@@ -327,7 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
-  aggroRange: 3.5
+  minAggroRange: 4
+  maxAggroRange: 6.5
   playerMask:
     serializedVersion: 2
     m_Bits: 64

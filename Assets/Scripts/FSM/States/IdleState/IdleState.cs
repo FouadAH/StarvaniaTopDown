@@ -32,7 +32,7 @@ public class IdleState : State
             isIdleTimeOver = true;
             entity.stateMachine.ChangeState(entity.patrolState);
         }
-        else if (entity.PlayerWithinRange())
+        else if (entity.PlayerWithinRange_Min())
         {
             entity.stateMachine.ChangeState(entity.playerDetectedState);
         }

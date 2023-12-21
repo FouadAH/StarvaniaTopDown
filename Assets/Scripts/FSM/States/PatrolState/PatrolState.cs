@@ -34,7 +34,7 @@ public class PatrolState : State
         {
             entity.stateMachine.ChangeState(entity.idleState);
         }
-        else if (entity.PlayerWithinRange())
+        else if (entity.PlayerWithinRange_Min())
         {
             entity.stateMachine.ChangeState(entity.playerDetectedState);
         }

@@ -8,7 +8,9 @@ using Cinemachine;
 public class Entity : MonoBehaviour, IDamageable
 {
     public float maxHealth;
-    public float aggroRange;
+    public float minAggroRange;
+    public float maxAggroRange;
+
     public LayerMask playerMask;
     public PlayerRuntimeDataSO runtimeData;
 
@@ -77,9 +79,13 @@ public class Entity : MonoBehaviour, IDamageable
         }
     }
 
-    public bool PlayerWithinRange()
+    public bool PlayerWithinRange_Min()
     {
-        return Physics2D.OverlapCircle(transform.position, aggroRange, playerMask);
+        return Physics2D.OverlapCircle(transform.position, minAggroRange, playerMask);
+    }
+    public bool PlayerWithinRange_Max()
+    {
+        return Physics2D.OverlapCircle(transform.position, maxAggroRange, playerMask);
     }
 
     public void SetSpawner(EntitySpawner entitySpawner)
@@ -95,6 +101,9 @@ public class Entity : MonoBehaviour, IDamageable
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, aggroRange);
+        Gizmos.DrawWireSphere(transform.position, minAggroRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxAggroRange);
     }
 }
