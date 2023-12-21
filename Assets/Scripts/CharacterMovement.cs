@@ -54,8 +54,13 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = new Vector2(currentVelocityX, currentVelocityY);
     }
 
+    public void SetMovementDirection(Vector2 moveDirection)
+    {
+        this.moveDirection = moveDirection;
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveDirection = context.ReadValue<Vector2>().normalized;
+        SetMovementDirection(context.ReadValue<Vector2>().normalized);
     }
 }
