@@ -5,10 +5,9 @@ using UnityEngine;
 public class MeleeAttackController : MonoBehaviour
 {
     public PlayerDataSO playerData;
+
     private float currentAttackTime;
-
     private bool canAttack = true;
-
     private Animator animator;
 
     private void Awake()
