@@ -20,6 +20,8 @@ public class Entity : MonoBehaviour
 
     private float health;
 
+    private EntitySpawner entitySpawner;
+
     public virtual void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
@@ -47,7 +49,20 @@ public class Entity : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            if (entitySpawner != null)
+            {
+                entitySpawner.Despawn(this);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
+
+    public void SetSpawner(EntitySpawner entitySpawner)
+    {
+        this.entitySpawner = entitySpawner;
+    }
+
 }

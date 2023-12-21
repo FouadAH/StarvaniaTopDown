@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Orientation Settings")]
     public Transform orientation;
+    public float rotationSpeed;
 
     private Vector3 moveDirection;
 
@@ -21,8 +22,6 @@ public class CharacterMovement : MonoBehaviour
     private float currentVelocityY;
 
     private Rigidbody2D rb;
-
-    bool isMoving;
 
     private void Awake()
     {
@@ -40,7 +39,7 @@ public class CharacterMovement : MonoBehaviour
         if (moveDirection.magnitude > 0f)
         {
             Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, moveDirection);
-            orientation.rotation = Quaternion.Slerp(orientation.rotation, lookRotation, 0.1f);
+            orientation.rotation = Quaternion.Slerp(orientation.rotation, lookRotation, rotationSpeed);
         }
     }
 
