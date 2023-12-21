@@ -34,6 +34,10 @@ public class PatrolState : State
         {
             entity.stateMachine.ChangeState(entity.idleState);
         }
+        else if (entity.PlayerWithinRange())
+        {
+            entity.stateMachine.ChangeState(entity.playerDetectedState);
+        }
     }
 
     public override void PhysicsUpdate()

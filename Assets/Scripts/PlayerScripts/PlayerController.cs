@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public PlayerDataSO playerData;
-
+    public PlayerRuntimeDataSO runtimeData;
     public void Update()
     {
         playerData.mana += playerData.manaRegenRate * Time.deltaTime;
-        playerData.mana = Mathf.Clamp(playerData.mana, 0, playerData.maxMana); 
+        playerData.mana = Mathf.Clamp(playerData.mana, 0, playerData.maxMana);
+
+        runtimeData.playerRuntimePosition = transform.position;
     }
 
     public void TakeDamage(float damageAmount)

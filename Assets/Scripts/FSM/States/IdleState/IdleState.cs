@@ -32,5 +32,9 @@ public class IdleState : State
             isIdleTimeOver = true;
             entity.stateMachine.ChangeState(entity.patrolState);
         }
+        else if (entity.PlayerWithinRange())
+        {
+            entity.stateMachine.ChangeState(entity.playerDetectedState);
+        }
     }
 }
