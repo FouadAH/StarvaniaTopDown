@@ -21,10 +21,12 @@ public class Entity : MonoBehaviour
     private float health;
 
     private EntitySpawner entitySpawner;
+    private ProjectileController projectileController;
 
     public virtual void Start()
     {
         characterMovement = GetComponent<CharacterMovement>();
+        projectileController = GetComponent<ProjectileController>();
 
         stateMachine = new FiniteStateMachine();
         idleState = new IdleState(this, stateMachine, IdleStateData);
@@ -63,6 +65,12 @@ public class Entity : MonoBehaviour
     public void SetSpawner(EntitySpawner entitySpawner)
     {
         this.entitySpawner = entitySpawner;
+    }
+
+    [ContextMenu("TEST FIRE")]
+    public void FireProjectile()
+    {
+        projectileController.FireProjectile(characterMovement.orientation.rotation);
     }
 
 }
