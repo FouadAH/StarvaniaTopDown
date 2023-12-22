@@ -13,7 +13,7 @@ public class PulledState : State
     public override void Exit()
     {
         base.Exit();
-        entity.characterMovement.moveSpeed = 8f;
+        entity.characterMovement.moveSpeed = 3f;
     }
 
     public override void LogicUpdate()

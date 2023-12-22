@@ -11,9 +11,18 @@ public class EntitySpawner : MonoBehaviour
     public int maxSpawnCount;
     public float spawnRange;
     public float spawnCooldown;
+    public bool spawnOnStart;
 
     private float currentSpawnTime;
     private int spawnCount;
+
+    private void Start()
+    {
+        if (spawnOnStart)
+        {
+            currentSpawnTime = spawnCooldown;
+        }
+    }
 
     private void Update()
     {

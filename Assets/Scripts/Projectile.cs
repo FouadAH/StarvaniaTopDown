@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
         {
             if (collision.GetComponent<IDamageable>() != null)
             {
-                collision.GetComponent<IDamageable>().TakeDamage(damageAmount);
+                collision.GetComponent<IDamageable>().TakeDamage(damageAmount, transform.position);
                 Destroy(gameObject);
             }
         }    
