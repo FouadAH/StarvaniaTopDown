@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Player
   - Entity
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Environment
+    uniqueID: 92807939
+    locked: 0
+  - name: Character
+    uniqueID: 3279121485
     locked: 0
