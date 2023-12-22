@@ -16,7 +16,7 @@ public class PatrolState : State
     public override void Enter()
     {
         base.Enter();
-        targetPosition = entity.transform.position + Random.insideUnitSphere * stateData.patrolRange;
+        targetPosition = (Vector3)entity.spawnPosition + Random.insideUnitSphere * stateData.patrolRange;
     }
 
     public override void Exit()
@@ -30,7 +30,14 @@ public class PatrolState : State
         base.LogicUpdate();
 
         float distanceToTarget = Vector2.Distance(entity.transform.position, targetPosition);
-        if(distanceToTarget <= stateData.stoppingDistance)
+
+        if (entity.IsDetectingWall())
+        {
+            entity.stateMachine.ChangeState(entity.idleState);
+            return;
+        }
+
+        if (distanceToTarget <= stateData.stoppingDistance)
         {
             entity.stateMachine.ChangeState(entity.idleState);
         }
