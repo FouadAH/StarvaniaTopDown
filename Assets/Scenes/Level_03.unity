@@ -7134,6 +7134,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a8f8523e10cd814987d8be55c08d12f, type: 3}
+--- !u!4 &902940927 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8297976460870600438, guid: 1a8f8523e10cd814987d8be55c08d12f, type: 3}
+  m_PrefabInstance: {fileID: 902940926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &984079837
 GameObject:
   m_ObjectHideFlags: 0
@@ -9225,6 +9230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484660850226275354, guid: f4dee4d7f6c2f794ebb700ac1007504c, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 902940927}
     - target: {fileID: 1741321386508369236, guid: f4dee4d7f6c2f794ebb700ac1007504c, type: 3}
       propertyPath: m_Name
       value: pfVirtual Camera
