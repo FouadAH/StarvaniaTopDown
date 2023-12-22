@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41176a33abedf094796c131373ec37c1, type: 3}
-  m_Name: LevelDataSO
+  m_Name: Level_02 DataSO
   m_EditorClassIdentifier: 
   levelKeys:
-  - {fileID: 11400000, guid: 4f628f70f2c3ab64ead460d1a14f33f9, type: 2}
+  - {fileID: 11400000, guid: 4c16635cdf8911d49b6a8a0e2e854670, type: 2}
+  - {fileID: 11400000, guid: 067caf9c73b199f40aca46a48cdb9377, type: 2}
