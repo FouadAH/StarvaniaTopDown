@@ -9,11 +9,18 @@ public class PulledState : State
     {
         this.stateData = stateData;
     }
+    public override void Enter()
+    {
+        base.Enter();
+        entity.characterMovement.moveSpeed = stateData.pullSpeed;
+        entity.characterMovement.velocitySmoothTime = stateData.pullVelocitySmoothing;
+    }
 
     public override void Exit()
     {
         base.Exit();
-        entity.characterMovement.moveSpeed = 3f;
+        entity.characterMovement.moveSpeed = entity.entityData.moveSpeed;
+        entity.characterMovement.velocitySmoothTime = entity.entityData.velocitySmoothing;
     }
 
     public override void LogicUpdate()
@@ -33,6 +40,5 @@ public class PulledState : State
 
         Vector2 directionToPlayer = entity.runtimeData.playerRuntimePosition - (Vector2)entity.transform.position;
         entity.characterMovement.SetMovementDirection(directionToPlayer);
-        entity.characterMovement.moveSpeed = stateData.pullSpeed;
     }
 }

@@ -328,15 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb1dac2fb2afbe498735eb4f93e4f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  minAggroRange: 4
-  maxAggroRange: 6.5
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
+  entityData: {fileID: 11400000, guid: 10aa3e82a1eab944590c1270e88e1cd1, type: 2}
   runtimeData: {fileID: 11400000, guid: 025d685520e0dab4eba71cc2332987c9, type: 2}
   debugText: {fileID: 8796818920510572231}
   wallChecker: {fileID: 5470586693008449832}
@@ -441,7 +433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3269833356746320444
 RectTransform:
   m_ObjectHideFlags: 0

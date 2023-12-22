@@ -7,4 +7,5 @@ public class PulledStateData : ScriptableObject
 {
     public float maxPullDistance;
     public float pullSpeed;
+    public float pullVelocitySmoothing;
 }

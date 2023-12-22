@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PulledStateData
   m_EditorClassIdentifier: 
   maxPullDistance: 3.5
-  pullSpeed: 8
+  pullSpeed: 5
+  pullVelocitySmoothing: 0.05

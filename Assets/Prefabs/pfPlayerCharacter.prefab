@@ -733,6 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: a1e5c9793ba95a64d95759c8ed66b268, type: 2}
   runtimeData: {fileID: 11400000, guid: 025d685520e0dab4eba71cc2332987c9, type: 2}
+  levelEventChannel: {fileID: 11400000, guid: 9554aeb1683829a408dc07c0784a8892, type: 2}
 --- !u!114 &2705351277843164607
 MonoBehaviour:
   m_ObjectHideFlags: 0

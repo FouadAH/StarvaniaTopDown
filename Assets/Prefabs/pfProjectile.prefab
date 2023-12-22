@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  projectileSpeed: 8
+  projectileSpeed: 12
   damageableMask:
     serializedVersion: 2
     m_Bits: 64

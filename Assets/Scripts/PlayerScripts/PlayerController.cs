@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,23 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     public PlayerDataSO playerData;
     public PlayerRuntimeDataSO runtimeData;
+    public LevelEventChannel levelEventChannel;
     private CharacterMovement characterMovement;
+    private CinemachineImpulseSource impulseSource;
 
     private void Start()
     {
         playerData.health = playerData.maxHealth;
+        playerData.mana = playerData.maxMana;
+
         characterMovement= GetComponent<CharacterMovement>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+        levelEventChannel.OnPlayerRespawn += OnRespawn;
+    }
+
+    private void OnDestroy()
+    {
+        levelEventChannel.OnPlayerRespawn -= OnRespawn;
     }
 
     public void Update()
@@ -22,12 +34,22 @@ public class PlayerController : MonoBehaviour, IDamageable
         runtimeData.playerRuntimePosition = transform.position;
     }
 
+    void OnRespawn(Vector2 spawnPoint)
+    {
+        playerData.health = playerData.maxHealth;
+        playerData.mana = playerData.maxMana;
+
+        transform.position = spawnPoint;   
+    }
+
     public void TakeDamage(float damageAmount, Vector2 damageDirection)
     {
         Vector2 directionToPlayer = (Vector2)transform.position - damageDirection;
         characterMovement.KnockBack(directionToPlayer);
 
         playerData.health -= damageAmount;
+        impulseSource.GenerateImpulse(0.5f);
+
         CheckDeath();
     }
 
@@ -35,7 +57,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         if(playerData.health < 0)
         {
-            Destroy(gameObject);
+            levelEventChannel.RaiseOnPlayerDeath();
         }
     }
 
