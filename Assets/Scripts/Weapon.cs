@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
         {
             if (collision.GetComponent<IDamageable>() != null)
             {
-                collision.GetComponent<IDamageable>().TakeDamage(damageAmount, transform.position);
+                collision.GetComponent<IDamageable>().TakeDamage(damageAmount, transform.parent.position);
             }
         }
     }

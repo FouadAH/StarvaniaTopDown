@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3052f7c1c5a1aac4793c0003cf1b38e5, type: 3}
   m_Name: PulledStateData
   m_EditorClassIdentifier: 
-  maxPullDistance: 3
+  maxPullDistance: 3.5
   pullSpeed: 8
