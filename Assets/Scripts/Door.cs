@@ -41,16 +41,17 @@ public class Door : MonoBehaviour
     void LoadNextLevel()
     {
         int levelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(levelIndex);
 
-        if (SceneManager.GetSceneByBuildIndex(levelIndex).IsValid())
-        {
-            Debug.Log($"Load Scene with index {levelIndex}");
-            SceneManager.LoadScene(levelIndex);
-        }
-        else
-        {
-            Debug.LogWarning($"Scene with index {levelIndex} not found!");
-        }
+        //if (SceneManager.GetSceneByBuildIndex(levelIndex).IsValid())
+        //{
+        //    Debug.Log($"Load Scene with index {levelIndex}");
+        //    SceneManager.LoadScene(levelIndex);
+        //}
+        //else
+        //{
+        //    Debug.LogWarning($"Scene with index {levelIndex} not found!");
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
