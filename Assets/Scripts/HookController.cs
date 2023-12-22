@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HookController : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class HookController : MonoBehaviour
     public PlayerDataSO playerData;
     public float manaPerHook;
     Entity hookedEntity;
+    bool isPulling;
 
     private void Update()
     {
@@ -27,6 +29,7 @@ public class HookController : MonoBehaviour
         {
             lineRenderer.enabled = false;
             hookedEntity = null;
+            isPulling = false;
         }
     }
 
@@ -35,9 +38,13 @@ public class HookController : MonoBehaviour
         if (playerData.mana < manaPerHook)
             return;
 
-        playerData.mana -= manaPerHook;
+        if (isPulling)
+            return;
 
-        var hit = Physics2D.Raycast(transform.position, orientation.transform.up, hookMaxDistance, hookable);
+        var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 directionToMouse = mousePosition - transform.position;
+
+        var hit = Physics2D.Raycast(transform.position, directionToMouse, hookMaxDistance, hookable);
         if(hit.collider != null)
         {
             lineRenderer.enabled = true;
@@ -48,6 +55,8 @@ public class HookController : MonoBehaviour
 
             if (hookedEntity != null)
             {
+                isPulling = true;
+                playerData.mana -= manaPerHook;
                 hookedEntity.stateMachine.ChangeState(hookedEntity.pulledState);
             }
         }
