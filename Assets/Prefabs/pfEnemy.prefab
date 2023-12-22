@@ -62,6 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4121433812943925221}
+  - {fileID: 3577240094492544822}
   m_Father: {fileID: 6235800897785444538}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -268,7 +269,6 @@ Transform:
   m_Children:
   - {fileID: 860492287932520697}
   - {fileID: 4100707630830805272}
-  - {fileID: 3577240094492544822}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -311,8 +311,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f02d3ab729e4a41b2bfcbbd6a54f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   velocitySmoothTime: 0.05
+  knockbackSpeed: 15
   orientation: {fileID: 860492287932520697}
   rotationSpeed: 0.5
 --- !u!114 &6650216862395082601
@@ -338,7 +339,7 @@ MonoBehaviour:
     m_Bits: 256
   runtimeData: {fileID: 11400000, guid: 025d685520e0dab4eba71cc2332987c9, type: 2}
   debugText: {fileID: 8796818920510572231}
-  wallChecker: {fileID: 2252792884008465466}
+  wallChecker: {fileID: 5470586693008449832}
   IdleStateData: {fileID: 11400000, guid: 9723f20cf788e9144927a21c8858d939, type: 2}
   PatrolStateData: {fileID: 11400000, guid: e3282407ab9e7c447817f8b2655d9100, type: 2}
   PlayerDetectedStateData: {fileID: 11400000, guid: 6d844883dce98a444b5308d937ef71bc, type: 2}
@@ -414,13 +415,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4868751200542922752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5470586693008449832}
-  m_Father: {fileID: 6235800897785444538}
+  m_Father: {fileID: 860492287932520697}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6247391608982891468
@@ -670,7 +671,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5470586693008449832}
-  - component: {fileID: 2252792884008465466}
   m_Layer: 0
   m_Name: WallChecker
   m_TagString: Untagged
@@ -686,45 +686,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9070510037773722998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3577240094492544822}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &2252792884008465466
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9070510037773722998}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.74

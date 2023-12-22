@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour, IDamageable
     public TMPro.TMP_Text debugText;
 
     [Header("Checkers")]
-    public CircleCollider2D wallChecker;
+    public Transform wallChecker;
 
     [Header("States")]
     public IdleStateData IdleStateData;
@@ -72,9 +72,12 @@ public class Entity : MonoBehaviour, IDamageable
         stateMachine.currentState.PhysicsUpdate();
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, Vector2 damageDirection)
     {
         health -= damageAmount;
+
+        Vector2 directionToPlayer = (Vector2)transform.position - damageDirection;
+        characterMovement.KnockBack(directionToPlayer);
 
         if (health <= 0)
         {
@@ -100,7 +103,8 @@ public class Entity : MonoBehaviour, IDamageable
 
     public bool IsDetectingWall()
     {
-        return Physics2D.OverlapCircle(wallChecker.transform.position, wallChecker.radius, obstacleMask);
+        return Physics2D.Linecast(transform.position, wallChecker.position, obstacleMask);
+        //return Physics2D.OverlapCircle(wallChecker.transform.position, wallChecker.radius, obstacleMask);
     }
 
     public void SetSpawner(EntitySpawner entitySpawner)
@@ -120,5 +124,8 @@ public class Entity : MonoBehaviour, IDamageable
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxAggroRange);
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, wallChecker.position);
     }
 }

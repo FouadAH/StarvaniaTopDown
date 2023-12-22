@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     [Header("Movement Settings")]
     public float moveSpeed = 3f;
     public float velocitySmoothTime = 0.05f;
+    public float knockbackSpeed;
 
     [Header("Orientation Settings")]
     public Transform orientation;
@@ -22,6 +23,8 @@ public class CharacterMovement : MonoBehaviour
     private float currentVelocityY;
 
     private Rigidbody2D rb;
+
+    private Vector3 targetVelocity;
 
     private void Awake()
     {
@@ -45,7 +48,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void CalculateVelocity()
     {
-        Vector3 targetVelocity = moveDirection * moveSpeed;
+        targetVelocity = moveDirection * moveSpeed;
 
         currentVelocityX = Mathf.SmoothDamp(currentVelocityX, targetVelocity.x, ref currentVelocityXRef, velocitySmoothTime);
         currentVelocityY = Mathf.SmoothDamp(currentVelocityY, targetVelocity.y, ref currentVelocityYRef, velocitySmoothTime);
@@ -56,6 +59,14 @@ public class CharacterMovement : MonoBehaviour
     public void SetMovementDirection(Vector2 moveDirection)
     {
         this.moveDirection = moveDirection;
+    }
+
+    public void KnockBack(Vector2 direction)
+    {
+        Vector2 knockbackForce = direction * knockbackSpeed;
+
+        currentVelocityX += knockbackForce.x;
+        currentVelocityY += knockbackForce.y;
     }
 
     public void OnMove(InputAction.CallbackContext context)

@@ -7,6 +7,7 @@ public class PatrolState : State
 {
     private PatrolStateData stateData;
     private Vector2 targetPosition;
+    private Vector2 moveDirection;
 
     public PatrolState(Entity entity, FiniteStateMachine stateMachine, PatrolStateData stateData) : base(entity, stateMachine)
     {
@@ -17,6 +18,7 @@ public class PatrolState : State
     {
         base.Enter();
         targetPosition = (Vector3)entity.spawnPosition + Random.insideUnitSphere * stateData.patrolRange;
+        moveDirection = targetPosition - (Vector2)entity.transform.position;
     }
 
     public override void Exit()
@@ -30,16 +32,9 @@ public class PatrolState : State
         base.LogicUpdate();
 
         float distanceToTarget = Vector2.Distance(entity.transform.position, targetPosition);
-
-        if (entity.IsDetectingWall())
+        if (entity.IsDetectingWall() || distanceToTarget <= stateData.stoppingDistance)
         {
-            entity.stateMachine.ChangeState(entity.idleState);
-            return;
-        }
-
-        if (distanceToTarget <= stateData.stoppingDistance)
-        {
-            entity.stateMachine.ChangeState(entity.idleState);
+            LookForValidTarget();
         }
         else if (entity.PlayerWithinRange_Min())
         {
@@ -47,11 +42,16 @@ public class PatrolState : State
         }
     }
 
+    void LookForValidTarget()
+    {
+        targetPosition = (Vector3)entity.spawnPosition + Random.insideUnitSphere * stateData.patrolRange;
+        moveDirection = targetPosition - (Vector2)entity.transform.position;
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
 
-        Vector2 moveDirection = targetPosition - (Vector2)entity.transform.position;
         entity.characterMovement.SetMovementDirection(moveDirection.normalized);
     }
 }

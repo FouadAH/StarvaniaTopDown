@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     public PlayerDataSO playerData;
     public PlayerRuntimeDataSO runtimeData;
+    private CharacterMovement characterMovement;
 
     private void Start()
     {
         playerData.health = playerData.maxHealth;
+        characterMovement= GetComponent<CharacterMovement>();
     }
 
     public void Update()
@@ -20,8 +22,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         runtimeData.playerRuntimePosition = transform.position;
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, Vector2 damageDirection)
     {
+        Vector2 directionToPlayer = (Vector2)transform.position - damageDirection;
+        characterMovement.KnockBack(directionToPlayer);
+
         playerData.health -= damageAmount;
         CheckDeath();
     }
