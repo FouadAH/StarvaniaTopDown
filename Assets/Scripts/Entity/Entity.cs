@@ -7,12 +7,7 @@ using Cinemachine;
 
 public class Entity : MonoBehaviour, IDamageable
 {
-    public float maxHealth;
-    public float minAggroRange;
-    public float maxAggroRange;
-
-    public LayerMask playerMask;
-    public LayerMask obstacleMask;
+    public EntityData entityData;
 
     public PlayerRuntimeDataSO runtimeData;
 
@@ -45,10 +40,13 @@ public class Entity : MonoBehaviour, IDamageable
 
     public virtual void Start()
     {
-        health = maxHealth;
+        health = entityData.maxHealth;
         spawnPosition = transform.position;
 
         characterMovement = GetComponent<CharacterMovement>();
+        characterMovement.moveSpeed = entityData.moveSpeed;
+        characterMovement.velocitySmoothTime = entityData.velocitySmoothing;
+
         projectileController = GetComponent<ProjectileController>();
 
         stateMachine = new FiniteStateMachine();
@@ -94,17 +92,16 @@ public class Entity : MonoBehaviour, IDamageable
 
     public bool PlayerWithinRange_Min()
     {
-        return Physics2D.OverlapCircle(transform.position, minAggroRange, playerMask);
+        return Physics2D.OverlapCircle(transform.position, entityData.minAggroRange, entityData.playerMask);
     }
     public bool PlayerWithinRange_Max()
     {
-        return Physics2D.OverlapCircle(transform.position, maxAggroRange, playerMask);
+        return Physics2D.OverlapCircle(transform.position, entityData.maxAggroRange, entityData.playerMask);
     }
 
     public bool IsDetectingWall()
     {
-        return Physics2D.Linecast(transform.position, wallChecker.position, obstacleMask);
-        //return Physics2D.OverlapCircle(wallChecker.transform.position, wallChecker.radius, obstacleMask);
+        return Physics2D.Linecast(transform.position, wallChecker.position, entityData.obstacleMask);
     }
 
     public void SetSpawner(EntitySpawner entitySpawner)
@@ -120,10 +117,10 @@ public class Entity : MonoBehaviour, IDamageable
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, minAggroRange);
+        Gizmos.DrawWireSphere(transform.position, entityData.minAggroRange);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, maxAggroRange);
+        Gizmos.DrawWireSphere(transform.position, entityData.maxAggroRange);
 
         Gizmos.color = Color.white;
         Gizmos.DrawLine(transform.position, wallChecker.position);

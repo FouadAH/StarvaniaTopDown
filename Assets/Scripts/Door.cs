@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class Door : MonoBehaviour
 {
     public KeySO keyData;
+    public GameObject doorObject;
     public CanvasGroup canvasGroup;
+    public bool isExit;
     bool isInRange;
 
     private void Start()
@@ -33,24 +35,20 @@ public class Door : MonoBehaviour
         if (!keyData.hasBeenCollected)
             return;
 
-        //Load Next Scene
-        Debug.Log("Door Opened"); 
-        LoadNextLevel();
+        if (isExit)
+        {
+            LoadNextLevel();
+        }
+        else
+        {
+            doorObject.SetActive(false);
+        }
     }
 
     void LoadNextLevel()
     {
         int levelIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-        if (SceneManager.GetSceneByBuildIndex(levelIndex).IsValid())
-        {
-            Debug.Log($"Load Scene with index {levelIndex}");
-            SceneManager.LoadScene(levelIndex);
-        }
-        else
-        {
-            Debug.LogWarning($"Scene with index {levelIndex} not found!");
-        }
+        SceneManager.LoadScene(levelIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
