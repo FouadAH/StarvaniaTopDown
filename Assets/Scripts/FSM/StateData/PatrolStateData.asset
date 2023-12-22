@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d52e6becd8e2404ea67e96146a3eeda, type: 3}
   m_Name: PatrolStateData
   m_EditorClassIdentifier: 
-  patrolRange: 5
+  patrolRange: 2
   stoppingDistance: 0.2

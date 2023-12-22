@@ -40,7 +40,7 @@ public class EntitySpawner : MonoBehaviour
 
     public void Despawn(Entity entity)
     {
-        Destroy(entity);
+        Destroy(entity.gameObject);
         spawnCount--;
     }
 

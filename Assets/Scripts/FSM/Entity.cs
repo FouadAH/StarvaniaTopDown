@@ -12,32 +12,41 @@ public class Entity : MonoBehaviour, IDamageable
     public float maxAggroRange;
 
     public LayerMask playerMask;
+    public LayerMask obstacleMask;
+
     public PlayerRuntimeDataSO runtimeData;
 
     [Header("Debug Text")]
     public TMPro.TMP_Text debugText;
 
-    public FiniteStateMachine stateMachine;
-
-    public CharacterMovement characterMovement { get; private set; }
+    [Header("Checkers")]
+    public CircleCollider2D wallChecker;
 
     [Header("States")]
     public IdleStateData IdleStateData;
     public PatrolStateData PatrolStateData;
     public PlayerDetectedStateData PlayerDetectedStateData;
+    public PulledStateData PulledStateData;
 
     public IdleState idleState;
     public PatrolState patrolState;
     public PlayerDetectedState playerDetectedState;
+    public PulledState pulledState;
 
     private float health;
 
     private EntitySpawner entitySpawner;
     private ProjectileController projectileController;
 
+    public FiniteStateMachine stateMachine;
+    public CharacterMovement characterMovement { get; private set; }
+
+    public Vector2 spawnPosition { get; private set; }
+
     public virtual void Start()
     {
         health = maxHealth;
+        spawnPosition = transform.position;
 
         characterMovement = GetComponent<CharacterMovement>();
         projectileController = GetComponent<ProjectileController>();
@@ -46,6 +55,7 @@ public class Entity : MonoBehaviour, IDamageable
         idleState = new IdleState(this, stateMachine, IdleStateData);
         patrolState = new PatrolState(this, stateMachine, PatrolStateData);
         playerDetectedState = new PlayerDetectedState(this, stateMachine, PlayerDetectedStateData);
+        pulledState = new PulledState(this, stateMachine, PulledStateData);
 
         stateMachine.Initialize(idleState);
     }
@@ -86,6 +96,11 @@ public class Entity : MonoBehaviour, IDamageable
     public bool PlayerWithinRange_Max()
     {
         return Physics2D.OverlapCircle(transform.position, maxAggroRange, playerMask);
+    }
+
+    public bool IsDetectingWall()
+    {
+        return Physics2D.OverlapCircle(wallChecker.transform.position, wallChecker.radius, obstacleMask);
     }
 
     public void SetSpawner(EntitySpawner entitySpawner)
