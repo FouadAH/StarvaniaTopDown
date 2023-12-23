@@ -105,6 +105,9 @@ MonoBehaviour:
   damageableMask:
     serializedVersion: 2
     m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!50 &681486346497555264
 Rigidbody2D:
   serializedVersion: 4
