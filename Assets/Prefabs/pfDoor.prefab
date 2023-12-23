@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1566935801914514204}
   - component: {fileID: 708046755427081269}
   - component: {fileID: 4246872306579092530}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3017384669161956797}
   - component: {fileID: 2959778852960348986}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 3109011070783601139}
   - component: {fileID: 4992085715248050241}
   - component: {fileID: 4596080331567199276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pfDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 6014996960047634421}
   - component: {fileID: 8320071671077351568}
   - component: {fileID: 3744485186336399030}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7250472759472511837}
   - component: {fileID: 8954110528098686944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
