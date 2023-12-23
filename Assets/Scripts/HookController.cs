@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class HookController : MonoBehaviour
 {
     public LayerMask hookable;
+    public LayerMask obstacles;
+
     public float hookMaxDistance;
     public float pullSpeed;
     public Transform orientation;
@@ -45,7 +47,9 @@ public class HookController : MonoBehaviour
         Vector2 directionToMouse = mousePosition - transform.position;
 
         var hit = Physics2D.Raycast(transform.position, directionToMouse, hookMaxDistance, hookable);
-        if(hit.collider != null)
+        bool hitObstacle = Physics2D.Raycast(transform.position, directionToMouse, hit.distance, obstacles);
+
+        if (hit.collider != null && !hitObstacle)
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, transform.position);
