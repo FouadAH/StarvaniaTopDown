@@ -10,49 +10,49 @@ Systems Description:
 -PlayerData scriptable object, stores the following data:
 	-Max Health
 -Current Health
-	-Max Mana 
+-Max Mana
 -Current Mana
 -Mana regen rate
 -Attack Cooldown
 
 -PlayerController:
 	-Refrences PlayerData scriptable object
-	-Implements IDamagable
--Tracks health and send death event
--Takes care of refilling the mana
+ 	-Implements IDamagable
+  	-Tracks health and send death event
+   	-Takes care of refilling the mana
 
 -PlayerHUD:
 	-Refrences PlayerData scriptable object
-	-Updates health and mana bars
-	-Updates current key count 
+ 	-Updates health and mana bars
+  	-Updates current key count 
 
 -Finite State Machine
-    -States:
-        -Idle State: waits a random amount of time between a given min and max
-        -Patrol State: picks a random position within a certain range of spawn, and moves towards it
-        -Pulled State: moves to towards player position at a given speed
-        -Player Detected State: Orients towards player position and fires a projectile
+	-States:
+ 		-Idle State: waits a random amount of time between a given min and max
+   		-Patrol State: picks a random position within a certain range of spawn, and moves towards it
+     		-Pulled State: moves to towards player position at a given speed
+       		-Player Detected State: Orients towards player position and fires a projectile
 
 -Entity: Enemy AI controller. 
 -Implements IDamageable
 -Defines player detection functions used by diffrent states
 
 -LevelEventChannel: 
-    	-Scriptable object channel that allows communication between scripts via events
-	-Defined events: OnPlayerDeath, OnKeyPickedUp and OnPlayerRespawn
+	-Scriptable object channel that allows communication between scripts via events
+ 	-Defined events: OnPlayerDeath, OnKeyPickedUp and OnPlayerRespawn
 
 -Character Movement: moves rigidbody given a movement direction. 
-    Variables: 
-        	-Move Speed 
-        	-Velocity smoothing
-	-Knockback speed
+	Variables: 
+ 		-Move Speed 
+   		-Velocity smoothing
+     		-Knockback speed
 
 -Projectille Controller: spawns the referenced projectile prefab
 
 -Projectile: 
-Variables: 
--Speed
--Damage
+	Variables: 
+ 		-Speed
+   		-Damage
 
 -Respawn Controller: listens to OnPlayerRespawn event, and repawns player at a given location
 
