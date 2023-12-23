@@ -92,11 +92,15 @@ public class Entity : MonoBehaviour, IDamageable
 
     public bool PlayerWithinRange_Min()
     {
-        return Physics2D.OverlapCircle(transform.position, entityData.minAggroRange, entityData.playerMask);
+        bool detectedObstacle = Physics2D.Linecast(transform.position, runtimeData.playerRuntimePosition, entityData.obstacleMask);
+        bool playerInRange = Physics2D.OverlapCircle(transform.position, entityData.minAggroRange, entityData.playerMask);
+        return playerInRange && !detectedObstacle;
     }
     public bool PlayerWithinRange_Max()
     {
-        return Physics2D.OverlapCircle(transform.position, entityData.maxAggroRange, entityData.playerMask);
+        bool detectedObstacle = Physics2D.Linecast(transform.position, runtimeData.playerRuntimePosition, entityData.obstacleMask);
+        bool playerInRange = Physics2D.OverlapCircle(transform.position, entityData.maxAggroRange, entityData.playerMask);
+        return playerInRange && !detectedObstacle;
     }
 
     public bool IsDetectingWall()
